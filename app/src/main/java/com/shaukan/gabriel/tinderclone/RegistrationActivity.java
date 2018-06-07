@@ -40,7 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
             }
-        }
+        };
 
         mRegister = (Button) findViewById(R.id.register);
 
