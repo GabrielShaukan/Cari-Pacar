@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -52,6 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        String userSex = getIntent().getExtras().getString("userSex");
         mNameField = (EditText) findViewById(R.id.name);
         mPhoneField = (EditText) findViewById(R.id.phone);
 
@@ -62,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mCustomerDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(userId);
+        mCustomerDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userSex).child(userId);
 
         getUserInfo();
 
@@ -81,6 +83,14 @@ public class SettingsActivity extends AppCompatActivity {
                 saveUserInformation();
             }
         });
+
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                return;
+            }
+        });
     }
 
     private void getUserInfo() {
@@ -94,9 +104,14 @@ public class SettingsActivity extends AppCompatActivity {
                         mNameField.setText(name);
                     }
 
-                    if(map.get("name") != null) {
+                    if(map.get("phone") != null) {
                         phone = map.get("phone").toString();
                         mNameField.setText(phone);
+                    }
+
+                    if(map.get("profileImageUrl") != null) {
+                        profileImageUrl = map.get("profileImageUrl").toString();
+                        Glide.with(getApplication()).load(profileImageUrl).into(mProfileImage);
                     }
                 }
             }
@@ -143,7 +158,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
 
                     Map userInfo = new HashMap();
-                    userInfo.put("profileImageUrl", downloadUrl);
+                    userInfo.put("profileImageUrl", downloadUrl.toString());
                     mCustomerDatabase.updateChildren(userInfo);
                     finish();
                     return;
