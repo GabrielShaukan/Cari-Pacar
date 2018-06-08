@@ -213,4 +213,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
         return;
     }
+
+    public void goToSettings(View view) {
+    }
 }
