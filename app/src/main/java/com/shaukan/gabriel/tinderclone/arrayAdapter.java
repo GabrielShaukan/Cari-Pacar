@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ArrayAdapter extends android.widget.ArrayAdapter<Cards> {
+public class arrayAdapter extends ArrayAdapter<Cards> {
 
     Context context;
 
-    public ArrayAdapter(Context context, int resourceId, List<Cards> items) {
+    public arrayAdapter(Context context, int resourceId, List<Cards> items) {
         super(context, resourceId, items);
     }
 
