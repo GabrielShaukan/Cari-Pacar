@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +31,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -99,14 +102,14 @@ public class SettingsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     Map<String, Object > map = (Map<String, Object>) dataSnapshot.getValue();
-                    if(map.get("name") != null) {
-                        name = map.get("name").toString();
+                    if(map.get("Name") != null) {
+                        name = map.get("Name").toString();
                         mNameField.setText(name);
                     }
 
                     if(map.get("phone") != null) {
                         phone = map.get("phone").toString();
-                        mNameField.setText(phone);
+                        mPhoneField.setText(phone);
                     }
 
                     if(map.get("profileImageUrl") != null) {
@@ -128,7 +131,7 @@ public class SettingsActivity extends AppCompatActivity {
         phone = mPhoneField.getText().toString();
 
         Map userInfo = new HashMap();
-        userInfo.put("name", name);
+        userInfo.put("Name", name);
         userInfo.put("phone", phone);
         mCustomerDatabase.updateChildren(userInfo);
 
@@ -145,7 +148,7 @@ public class SettingsActivity extends AppCompatActivity {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
             byte[] data = baos.toByteArray();
-            UploadTask uploadTask = filePath.putBytes(data);
+            final UploadTask uploadTask = filePath.putBytes(data);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
@@ -155,13 +158,19 @@ public class SettingsActivity extends AppCompatActivity {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                   taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                       @Override
+                       public void onSuccess(Uri uri) {
+                           Uri downloadUrl = uri;
 
-                    Map userInfo = new HashMap();
-                    userInfo.put("profileImageUrl", downloadUrl.toString());
-                    mCustomerDatabase.updateChildren(userInfo);
-                    finish();
-                    return;
+                           Map userInfo = new HashMap();
+                           userInfo.put("profileImageUrl", downloadUrl.toString());
+                           mCustomerDatabase.updateChildren(userInfo);
+                           finish();
+                           return;
+
+                       }
+                   });
                 }
             });
 
