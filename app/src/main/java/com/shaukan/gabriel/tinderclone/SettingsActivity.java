@@ -162,7 +162,6 @@ public class SettingsActivity extends AppCompatActivity {
                        @Override
                        public void onSuccess(Uri uri) {
                            Uri downloadUrl = uri;
-
                            Map userInfo = new HashMap();
                            userInfo.put("profileImageUrl", downloadUrl.toString());
                            mCustomerDatabase.updateChildren(userInfo);
