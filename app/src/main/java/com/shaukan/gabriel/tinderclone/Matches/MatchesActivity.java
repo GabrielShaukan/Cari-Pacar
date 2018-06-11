@@ -40,12 +40,6 @@ public class MatchesActivity extends AppCompatActivity {
 
         getUserMatchId();
 
-        for (int i=0;i<100;i++) {
-            MatchesObject obj = new MatchesObject(Integer.toString(i));
-            resultsMatches.add(obj);
-        }
-
-        mMatchesAdapter.notifyDataSetChanged();
     }
 
     private void getUserMatchId() {
@@ -69,7 +63,33 @@ public class MatchesActivity extends AppCompatActivity {
     }
 
     private void FetchMatchInformation(String key) {
-        
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
+        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    String userId = dataSnapshot.getKey();
+                    String name = "";
+                    String profileImageUrl = "";
+
+                    if (dataSnapshot.child("Name").getValue() != null) {
+                        name = dataSnapshot.child("Name").getValue().toString();
+                    }
+                    if (dataSnapshot.child("profileImageUrl").getValue() != null) {
+                        profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                    }
+
+                    MatchesObject obj = new MatchesObject(userId, name, profileImageUrl);
+                    resultsMatches.add(obj);
+                    mMatchesAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
