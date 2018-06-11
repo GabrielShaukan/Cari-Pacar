@@ -15,7 +15,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolder> {
     private List<MatchesObject> matchesList;
     private Context context;
 
-    public MatchesAdapter(List<MatchesObject> matchesList, Context context {
+    public MatchesAdapter(List<MatchesObject> matchesList, Context context) {
         this.matchesList = matchesList;
         this.context = context;
     };
@@ -25,7 +25,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolder> {
     public MatchesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_matches, null, false);
-        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
         MatchesViewHolder rcv = new MatchesViewHolder((layoutView));
 
@@ -36,11 +36,11 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MatchesViewHolder holder, int position) {
         holder.mMatchId.setText(matchesList.get(position).getUserId());
-        
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return matchesList.size();
     }
 }
