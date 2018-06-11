@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone;
+package com.shaukan.gabriel.tinderclone.Cards;
 
 public class Cards {
     private String userId;
