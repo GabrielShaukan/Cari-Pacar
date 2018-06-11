@@ -161,15 +161,18 @@ public class MainActivity extends AppCompatActivity {
         usersDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded (@NonNull DataSnapshot dataSnapshot, @Nullable String s){
-                if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yep").hasChild(currentUId) && dataSnapshot.child("sex").getValue().toString().equals(oppositeUserSex)) {
-                    String profileImageUrl = "default";
-                    if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
-                        profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                if (dataSnapshot.child("sex").getValue() != null) {
+                    if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yep").hasChild(currentUId) && dataSnapshot.child("sex").getValue().toString().equals(oppositeUserSex)) {
+                        String profileImageUrl = "default";
+                        if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
+                            profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                        }
+                        Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl );
+                        rowItems.add(item);
+                        arrayAdapter.notifyDataSetChanged();
                     }
-                    Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl );
-                    rowItems.add(item);
-                    arrayAdapter.notifyDataSetChanged();
                 }
+
             }
             @Override
             public void onChildChanged (@NonNull DataSnapshot dataSnapshot, @Nullable String s){
