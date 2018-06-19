@@ -64,30 +64,37 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 int selectId = mRadioGroup.getCheckedRadioButtonId();
                 final RadioButton radioButton = (RadioButton) findViewById(selectId);
-
-                if (radioButton.getText() == null) {
-                    return;
-                }
-
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
                 final String name = mName.getText().toString();
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(RegistrationActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
-                        } else {
-                            String userId = mAuth.getCurrentUser().getUid();
-                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-                            Map userInfo = new HashMap<>();
-                            userInfo.put("Name", name);
-                            userInfo.put("sex", radioButton.getText().toString());
-                            userInfo.put("profileImageUrl", "default");
-                            currentUserDb.updateChildren(userInfo);
-                        }
+
+                if (email.equals("") || password.equals("") || name.equals("") || radioButton.getText().toString().equals("")) {
+                    Toast.makeText(RegistrationActivity.this, "Please fill in empty forms", Toast.LENGTH_LONG).show();
+                } else {
+                    if (radioButton.getText() == null) {
+                        return;
                     }
-                });
+
+
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(RegistrationActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
+                            } else {
+                                String userId = mAuth.getCurrentUser().getUid();
+                                DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                                Map userInfo = new HashMap<>();
+                                userInfo.put("Name", name);
+                                userInfo.put("sex", radioButton.getText().toString());
+                                userInfo.put("profileImageUrl", "default");
+                                currentUserDb.updateChildren(userInfo);
+                            }
+                        }
+                    });
+                }
+
+
             }
         });
     }
