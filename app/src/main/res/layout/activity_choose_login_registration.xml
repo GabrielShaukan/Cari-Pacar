@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,29 +10,40 @@
     tools:context=".ChooseLoginRegistrationActivity"
     android:orientation="vertical"
     android:background="@color/background"
-    android:gravity="center">
+    android:gravity="center"
+    >
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:layout_marginTop="-100dp"
         android:src="@drawable/cari_pacar_logo" />
 
     <Button
-
         android:id="@+id/login"
+        style="@android:style/Widget.Material.Light.Button.Borderless.Small"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:layout_marginTop="100dp"
         android:background="@color/color1"
-        android:textColor="@color/cardview_light_background" />
+        android:fontFamily="@font/arsenal"
+        android:lineSpacingExtra="12sp"
+
+        android:text="L o g i n"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/register"
-        android:layout_marginTop="15dp"
         android:layout_width="250dp"
-        android:background="@color/color1"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:textColor="@android:color/background_light" />
+        android:layout_marginTop="15dp"
+        android:background="@color/color1"
+        android:fontFamily="@font/arsenal"
+        android:text="R e g i s t e r"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

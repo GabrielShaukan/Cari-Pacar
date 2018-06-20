@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/allan</item>
+        <item>@font/archivo_narrow</item>
+        <item>@font/arsenal</item>
+        <item>@font/basic</item>
+        <item>@font/lekton</item>
+        <item>@font/pacifico</item>
+    </array>
+</resources>

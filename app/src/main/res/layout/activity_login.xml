@@ -5,23 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/cari_pacar_logo"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColorHint="@color/white"
         android:hint="email"
+        android:layout_gravity="center"
         android:id="@+id/email"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
+        android:textColorHint="@color/white"
+        android:shadowColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
         android:layout_height="wrap_content"
         android:hint="password"
         android:id="@+id/password"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:background="@color/color1"
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/login"/>
