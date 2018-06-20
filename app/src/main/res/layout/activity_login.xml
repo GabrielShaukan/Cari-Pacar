@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:textColorHint="@color/white"
-        android:hint="email"
         android:layout_gravity="center"
+        android:hint="email"
         android:id="@+id/email"/>
 
     <EditText
