@@ -136,6 +136,8 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
 
+
+
                 final NestedScrollView scrollview = ((NestedScrollView) findViewById(R.id.scrollView));
                 scrollview.post(new Runnable() {
                     @Override
