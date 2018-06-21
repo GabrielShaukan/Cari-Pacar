@@ -75,6 +75,7 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    //pushes the messages and user to database
     private void sendMessage() {
         String sendMessageText  = mSendEditText.getText().toString();
 
@@ -91,6 +92,7 @@ public class ChatActivity extends AppCompatActivity {
         mSendEditText.setText(null);
     }
 
+    //generates a chat id
     private void getChatId() {
         mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -108,6 +110,7 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    //gets chat messages and user who sent said message
     private void getChatMessages() {
         mDatabaseChat.addChildEventListener(new ChildEventListener() {
             @Override
@@ -137,7 +140,7 @@ public class ChatActivity extends AppCompatActivity {
                 }
 
 
-
+                //Autoscroll
                 final NestedScrollView scrollview = ((NestedScrollView) findViewById(R.id.scrollView));
                 scrollview.post(new Runnable() {
                     @Override

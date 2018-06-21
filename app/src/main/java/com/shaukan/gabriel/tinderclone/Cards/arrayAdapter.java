@@ -14,10 +14,12 @@ import com.shaukan.gabriel.tinderclone.R;
 
 import java.util.List;
 
+//Creating an arrayAdapter class
 public class arrayAdapter extends ArrayAdapter<Cards> {
 
     Context context;
 
+    //arrayAdapter constructor
     public arrayAdapter(Context context, int resourceId, List<Cards> items) {
         super(context, resourceId, items);
     }

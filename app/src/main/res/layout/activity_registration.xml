@@ -30,33 +30,33 @@
         android:hint="age"
         android:id="@+id/age"/>
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="65dp">
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
-            <RadioButton
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Male"
-                android:textColor="@color/white"/>
+                android:layout_marginLeft="65dp">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textColor="@color/white"/>
 
-            <RadioButton
-                android:layout_marginLeft="40dp"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female" />
+                <RadioButton
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female" />
+            </RadioGroup>
 
         </LinearLayout>
 
 
-    </RadioGroup>
+
 
     <EditText
         android:layout_width="250dp"

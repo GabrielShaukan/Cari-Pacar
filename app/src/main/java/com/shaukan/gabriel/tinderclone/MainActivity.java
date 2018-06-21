@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Checks if there is a match or not 
     private void isConnectionMatch(String userId) {
         DatabaseReference currentUserConnectionsDb = usersDb.child(currentUId).child("connections").child("yep").child(userId);
         currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //checks user sex and gets opposite sex to display in main activity
     private String userSex;
     private String oppositeUserSex;
     public void checkUserSex() {
@@ -193,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Logs out user
     public void logoutUser(View view) {
         mAuth.signOut();
         Intent intent = new Intent(MainActivity.this, ChooseLoginRegistrationActivity.class);
@@ -201,12 +204,14 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
+    //Intent for settings activity
     public void goToSettings(View view) {
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
         return;
     }
 
+    //Intent for matches activity
     public void goToMatches(View view) {
         Intent intent = new Intent(MainActivity.this, MatchesActivity.class);
         startActivity(intent);

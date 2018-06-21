@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import com.shaukan.gabriel.tinderclone.R;
 
+//creating ChatViewHolder class
 public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
     public TextView mMessage;
     public LinearLayout mContainer;
+
     public ChatViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);

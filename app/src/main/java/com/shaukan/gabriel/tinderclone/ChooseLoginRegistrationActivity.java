@@ -12,8 +12,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ChooseLoginRegistrationActivity extends AppCompatActivity {
 
-    private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     private Button mLogin, mRegister;
+
+    private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     private FirebaseAuth mAuth;
 
     @Override
@@ -21,6 +22,8 @@ public class ChooseLoginRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_login_registration);
 
+
+        //Checks if user is already logged in or not, and changes starting activity accordingly
         mAuth = FirebaseAuth.getInstance();
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -35,6 +38,8 @@ public class ChooseLoginRegistrationActivity extends AppCompatActivity {
             }
         };
 
+
+        //Initializing buttons and button functionality
         mLogin = (Button) findViewById(R.id.login);
         mRegister = (Button) findViewById(R.id.register);
 
@@ -58,6 +63,7 @@ public class ChooseLoginRegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onStart() {

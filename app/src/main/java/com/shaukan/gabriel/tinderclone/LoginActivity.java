@@ -42,11 +42,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
+        //XML object initialization
         mLogin = (Button) findViewById(R.id.login);
-
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
 
+        //logging in user
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.removeAuthStateListener(firebaseAuthStateListener);
     }
 
+    //Prevents back button from crashing app
     @Override
     public void onBackPressed(){
         Intent intent = new Intent(LoginActivity.this, ChooseLoginRegistrationActivity.class);

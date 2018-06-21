@@ -26,6 +26,8 @@
         android:layout_width="250dp"
         android:textColorHint="@color/white"
         android:shadowColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textColorLink="@color/white"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:layout_height="wrap_content"

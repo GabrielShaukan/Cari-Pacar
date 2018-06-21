@@ -95,6 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    //Listens for changes in user data and sets fields to new values
     private void getUserInfo() {
         mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -138,6 +139,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    //Gets change user data from fields and saves them to the database
     private void saveUserInformation() {
         name  = mNameField.getText().toString();
         phone = mPhoneField.getText().toString();

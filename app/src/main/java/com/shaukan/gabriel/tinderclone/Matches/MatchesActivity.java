@@ -42,6 +42,7 @@ public class MatchesActivity extends AppCompatActivity {
 
     }
 
+    //Gets the userId of the match
     private void getUserMatchId() {
 
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches");
@@ -62,6 +63,7 @@ public class MatchesActivity extends AppCompatActivity {
         });
     }
 
+    //Fetches user name, profile picture, and userId
     private void FetchMatchInformation(String key) {
         DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {

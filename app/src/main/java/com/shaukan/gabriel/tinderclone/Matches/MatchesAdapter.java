@@ -12,6 +12,7 @@ import com.shaukan.gabriel.tinderclone.R;
 
 import java.util.List;
 
+//Create MatchesAdapter Object
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolder> {
     private List<MatchesObject> matchesList;
     private Context context;

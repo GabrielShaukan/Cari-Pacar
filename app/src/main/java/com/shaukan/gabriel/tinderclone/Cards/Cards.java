@@ -1,15 +1,20 @@
 package com.shaukan.gabriel.tinderclone.Cards;
 
+//Creating Card class
 public class Cards {
+    //Card Object instance variables
     private String userId;
     private String name;
     private String profileImageUrl;
+
+    //Card Object Constructor
     public Cards (String userId, String name, String profileImageUrl) {
         this.userId = userId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;
     }
 
+    //Card Object Methods
     public String getUserId() {
         return userId;
     }

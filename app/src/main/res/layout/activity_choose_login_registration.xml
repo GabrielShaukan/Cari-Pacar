@@ -21,18 +21,15 @@
 
     <Button
         android:id="@+id/login"
-        style="@android:style/Widget.Material.Light.Button.Borderless.Small"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:background="@color/color1"
-        android:fontFamily="@font/arsenal"
         android:lineSpacingExtra="12sp"
 
-        android:text="L o g i n"
+        android:text="Login"
         android:textColor="@color/cardview_light_background"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/register"
@@ -40,10 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@color/color1"
-        android:fontFamily="@font/arsenal"
-        android:text="R e g i s t e r"
+        android:text="Register"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
 </LinearLayout>

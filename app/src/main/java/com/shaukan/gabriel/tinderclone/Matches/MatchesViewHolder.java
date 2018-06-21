@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.shaukan.gabriel.tinderclone.Chat.ChatActivity;
 import com.shaukan.gabriel.tinderclone.R;
 
+//create MatchesViewHolder class
 public class MatchesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView mMatchId, mMatchName;
     public ImageView mMatchImage;

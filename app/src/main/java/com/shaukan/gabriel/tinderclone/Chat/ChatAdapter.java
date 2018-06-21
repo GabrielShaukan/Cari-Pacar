@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.shaukan.gabriel.tinderclone.R;
 
 import java.util.List;
-
+//Creating ChatAdapter class
 public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     private List<ChatObject> chatList;
     private Context context;
