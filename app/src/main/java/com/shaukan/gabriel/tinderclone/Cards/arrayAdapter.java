@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide;
 import com.shaukan.gabriel.tinderclone.Cards.Cards;
 import com.shaukan.gabriel.tinderclone.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 //Creating an arrayAdapter class
@@ -33,8 +35,10 @@ public class arrayAdapter extends ArrayAdapter<Cards> {
 
         TextView name = (TextView) convertView.findViewById(R.id.name);
         ImageView image = (ImageView) convertView.findViewById(R.id.image);
+        TextView age = (TextView) convertView.findViewById(R.id.age);
 
         name.setText(card_item.getName());
+        age.setText(card_item.getAge());
 
         switch (card_item.getProfileImageUrl()) {
             case "default":

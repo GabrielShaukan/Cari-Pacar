@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //Checks if there is a match or not 
+    //Checks if there is a match or not
     private void isConnectionMatch(String userId) {
         DatabaseReference currentUserConnectionsDb = usersDb.child(currentUId).child("connections").child("yep").child(userId);
         currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                         }
-                        Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl );
+                        Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl, dataSnapshot.child("Age").getValue().toString() );
                         rowItems.add(item);
                         arrayAdapter.notifyDataSetChanged();
                     }
