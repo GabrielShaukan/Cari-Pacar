@@ -25,7 +25,7 @@ import java.util.Map;
 public class RegistrationActivity extends AppCompatActivity {
 
     private Button mRegister;
-    private EditText mEmail, mPassword, mName, mAge;
+    private EditText mEmail, mPassword, mName, mAge, mOccupation;
     private RadioGroup mRadioGroup;
 
     private FirebaseAuth mAuth;
@@ -56,6 +56,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mPassword = (EditText) findViewById(R.id.password);
         mName = (EditText) findViewById(R.id.name);
         mAge = (EditText) findViewById(R.id.age);
+        mOccupation = (EditText) findViewById(R.id.occupation);
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         //Registering User
@@ -69,8 +70,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 final String password = mPassword.getText().toString();
                 final String name = mName.getText().toString();
                 final String age = mAge.getText().toString();
+                final String occupation = mOccupation.getText().toString();
 
-                if (email.equals("") || password.equals("") || name.equals("") || age.equals("") || radioButton.getText().toString().equals("")) {
+                if (email.equals("") || password.equals("") || name.equals("") || age.equals("") || occupation.equals("") || radioButton.getText().toString().equals("")) {
                     Toast.makeText(RegistrationActivity.this, "Please fill in empty forms", Toast.LENGTH_LONG).show();
                 } else {
                     if (radioButton.getText() == null) {
@@ -89,6 +91,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 userInfo.put("Name", name);
                                 userInfo.put("Age", age);
                                 userInfo.put("sex", radioButton.getText().toString());
+                                userInfo.put("Occupation", occupation);
                                 userInfo.put("profileImageUrl", "default");
                                 currentUserDb.updateChildren(userInfo);
                             }

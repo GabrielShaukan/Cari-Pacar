@@ -41,15 +41,15 @@
                     android:scaleType="centerCrop" />
 
                 <TextView
-                    android:id="@+id/myImageViewText"
+                    android:id="@+id/occupation"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="56dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:gravity="left"
-                    android:text="Occupation"
                     android:paddingLeft="15dp"
-                    android:textColor="@color/cardview_light_background"
+                    android:text="Occupation"
+                    android:textColor="@android:color/background_light"
                     android:textSize="30sp" />
 
 
@@ -57,8 +57,9 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="52dp"
-                    android:layout_above="@+id/myImageViewText"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
+                    android:layout_marginBottom="60dp"
                     android:gravity="center"
                     android:paddingLeft="15dp"
                     android:text="Name"
@@ -69,7 +70,7 @@
                     android:id="@+id/age"
                     android:layout_width="78dp"
                     android:layout_height="53dp"
-                    android:layout_above="@+id/myImageViewText"
+                    android:layout_alignTop="@+id/name"
                     android:layout_toEndOf="@+id/name"
                     android:gravity="center"
                     android:text="Age"

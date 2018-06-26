@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                         }
-                        Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl, dataSnapshot.child("Age").getValue().toString() );
+                        Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl, dataSnapshot.child("Occupation").getValue().toString(), dataSnapshot.child("Age").getValue().toString() );
                         rowItems.add(item);
                         arrayAdapter.notifyDataSetChanged();
                     }

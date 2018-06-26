@@ -6,13 +6,16 @@ public class Cards {
     private String userId;
     private String name;
     private String profileImageUrl;
+    private String occupation;
     private String age;
 
     //Card Object Constructor
-    public Cards (String userId, String name, String profileImageUrl, String age) {
+    public Cards (String userId, String name, String profileImageUrl, String occupation, String age) {
         this.userId = userId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;
+
+        this.occupation = occupation;
         this.age = age;
     }
 
@@ -29,6 +32,9 @@ public class Cards {
 
     public String getAge() { return age; }
     public void setAge(String age) { this.age = age; }
+
+    public String getOccupation() { return occupation; }
+    public void setOccupation(String occupation) { this.occupation = occupation; }
 
     public String getProfileImageUrl() { return profileImageUrl; }
     public void setProfileImageUrl(String profileImageUrl) { this.profileImageUrl = profileImageUrl; }
