@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
@@ -37,7 +38,8 @@ import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private EditText mNameField, mPhoneField;
+    private TextView mNameField, mAgeField;
+    private EditText mOccupationField;
 
     private Button mBack, mConfirm;
 
@@ -46,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
 
-    private String userId, name, phone, profileImageUrl, userSex;
+    private String userId, name, age, profileImageUrl, occupation,  userSex;
 
     private Uri resultUri;
 
@@ -56,8 +58,9 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        mNameField = (EditText) findViewById(R.id.name);
-        mPhoneField = (EditText) findViewById(R.id.phone);
+        mNameField = (TextView) findViewById(R.id.name);
+        mAgeField = (TextView) findViewById(R.id.age);
+        mOccupationField = (EditText) findViewById(R.id.occupation);
 
         mProfileImage = (ImageView) findViewById(R.id.profileImg);
 
@@ -102,14 +105,15 @@ public class SettingsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     Map<String, Object > map = (Map<String, Object>) dataSnapshot.getValue();
-                    if(map.get("Name") != null) {
+                    if(map.get("Name") != null & map.get("Age") != null) {
                         name = map.get("Name").toString();
-                        mNameField.setText(name);
+                        age = map.get("Age").toString();
+                        mNameField.setText(name + ", " + age);
                     }
 
-                    if(map.get("phone") != null) {
-                        phone = map.get("phone").toString();
-                        mPhoneField.setText(phone);
+                    if(map.get("Occupation") != null) {
+                        occupation = map.get("Occupation").toString();
+                        mOccupationField.setText(occupation);
                     }
 
                     if(map.get("sex") != null) {
@@ -142,11 +146,10 @@ public class SettingsActivity extends AppCompatActivity {
     //Gets change user data from fields and saves them to the database
     private void saveUserInformation() {
         name  = mNameField.getText().toString();
-        phone = mPhoneField.getText().toString();
+        occupation = mOccupationField.getText().toString();
 
         Map userInfo = new HashMap();
-        userInfo.put("Name", name);
-        userInfo.put("phone", phone);
+        userInfo.put("Occupation", occupation);
         mUserDatabase.updateChildren(userInfo);
 
         if(resultUri != null) {

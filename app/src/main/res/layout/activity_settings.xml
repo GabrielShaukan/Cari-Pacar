@@ -6,41 +6,84 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity"
     android:orientation="vertical"
-    android:padding="20sp">
+    android:padding="20sp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@color/background">
 
-    <ImageView
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:id="@+id/profileImg"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginBottom="20sp"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="163dp"
+        android:layout_height="169dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="50dp">
+
+        <ImageView
+            android:id="@+id/profileImg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+    </android.support.v7.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:hint="Name"
+            android:id="@+id/name"/>
+
+
+
+    </LinearLayout>
+
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:id="@+id/name"
-        android:hint="Name"
-        android:layout_marginBottom="20sp"/>
+        android:textColorHint="@color/white"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:hint="Occupation"
+        android:paddingTop="25dp"
+        android:textSize="30dp"
+        android:id="@+id/occupation"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:id="@+id/phone"
-        android:hint="Phone"
-        android:layout_marginBottom="20sp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:background="@color/color1"
+        android:textColor="@color/white"
+        android:layout_marginTop="150dp"
         android:layout_height="wrap_content"
-        android:id="@+id/confirm"
-        android:text="confirm"/>
+        android:text="confirm"
+        android:id="@+id/confirm"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:background="@color/color1"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:text="back"/>
+        android:text="Back"
+        android:id="@+id/back"/>
+
 
 </LinearLayout>
