@@ -37,7 +37,7 @@ public class arrayAdapter extends ArrayAdapter<Cards> {
         ImageView image = (ImageView) convertView.findViewById(R.id.image);
         TextView age = (TextView) convertView.findViewById(R.id.age);
 
-        name.setText(card_item.getName());
+        name.setText(card_item.getName() + " ,");
         age.setText(card_item.getAge());
 
         switch (card_item.getProfileImageUrl()) {
