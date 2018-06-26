@@ -38,8 +38,7 @@ public class arrayAdapter extends ArrayAdapter<Cards> {
         TextView age = (TextView) convertView.findViewById(R.id.age);
         TextView occupation = (TextView) convertView.findViewById(R.id.occupation);
 
-        name.setText(card_item.getName() + " ,");
-        age.setText(card_item.getAge());
+        name.setText(card_item.getName() + " , " + card_item.getAge());
         if (card_item.getOccupation() != null) {
             occupation.setText(card_item.getOccupation());
         }

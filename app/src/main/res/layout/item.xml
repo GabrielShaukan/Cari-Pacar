@@ -38,7 +38,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"/>
 
                 <TextView
                     android:id="@+id/occupation"
@@ -49,33 +49,26 @@
                     android:gravity="left"
                     android:paddingLeft="15dp"
                     android:text="Occupation"
+                    android:background="@color/transparentBlack"
+
                     android:textColor="@android:color/background_light"
                     android:textSize="30sp" />
 
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="52dp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp"
+                    android:layout_above="@+id/occupation"
                     android:layout_alignParentStart="true"
-                    android:layout_marginBottom="60dp"
-                    android:gravity="center"
+                    android:background="@color/transparentBlack"
+                    android:gravity="left|center"
                     android:paddingLeft="15dp"
                     android:text="Name"
                     android:textColor="@android:color/background_light"
                     android:textSize="36sp" />
 
-                <TextView
-                    android:id="@+id/age"
-                    android:layout_width="78dp"
-                    android:layout_height="53dp"
-                    android:layout_alignTop="@+id/name"
-                    android:layout_toEndOf="@+id/name"
-                    android:gravity="center"
-                    android:text="Age"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="36sp" />
+
 
             </RelativeLayout>
 

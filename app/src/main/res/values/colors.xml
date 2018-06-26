@@ -8,4 +8,5 @@
     <color name="color3">#553E4E</color>
     <color name="color4">#9EBC9E</color>
     <color name="background">#F83A50</color>
+    <color name="transparentBlack">#26000000</color>
 </resources>
