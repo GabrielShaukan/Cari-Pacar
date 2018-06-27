@@ -7,9 +7,19 @@
     tools:context=".Chat.ChatActivity"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textSize="30dp"
+        android:hint="Name"
+        android:id="@+id/name"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"/>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="45dp"
         android:layout_above="@+id/sendLayout"
         android:id="@+id/scrollView">
 

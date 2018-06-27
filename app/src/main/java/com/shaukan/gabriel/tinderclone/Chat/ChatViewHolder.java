@@ -14,12 +14,14 @@ import com.shaukan.gabriel.tinderclone.R;
 public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView mMessage;
+    public TextView mUser;
     public LinearLayout mContainer;
 
     public ChatViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
 
+        mUser = itemView.findViewById(R.id.name);
         mMessage = itemView.findViewById(R.id.message);
         mContainer = itemView.findViewById(R.id.container);
     }

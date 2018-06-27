@@ -40,10 +40,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         holder.mMessage.setText(chatList.get(position).getMessage());
         if (chatList.get(position).getCurrentUser()) {
+            holder.mUser.setText("Me");
+            holder.mUser.setGravity(Gravity.END);
             holder.mMessage.setGravity(Gravity.END);
             holder.mMessage.setTextColor(Color.parseColor("#404040"));
             holder.mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"));
         } else {
+            holder.mUser.setText("You");
+            holder.mUser.setGravity(Gravity.START);
             holder.mMessage.setGravity(Gravity.START);
             holder.mMessage.setTextColor(Color.parseColor("#FFFFFF"));
             holder.mContainer.setBackgroundColor(Color.parseColor("#2DB4C8"));

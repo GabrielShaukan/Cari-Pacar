@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -37,10 +38,11 @@ public class ChatActivity extends AppCompatActivity {
     private String currentUserID, matchId, chatId;
 
     private EditText mSendEditText;
+    private TextView mChatName;
 
     private Button mSendButton;
 
-    DatabaseReference mDatabaseUser, mDatabaseChat;
+    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,22 @@ public class ChatActivity extends AppCompatActivity {
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId");
+        mDatabaseChatName = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("Name");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
+
+        //adds match name to top of chat activity 
+        mDatabaseChatName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mChatName.setText(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         getChatId();
 
@@ -64,6 +81,7 @@ public class ChatActivity extends AppCompatActivity {
         mChatAdapter = new ChatAdapter (getDataSetChat(), ChatActivity.this);
         mRecyclerView.setAdapter(mChatAdapter);
 
+        mChatName = findViewById(R.id.name);
         mSendEditText = findViewById(R.id.message);
         mSendButton = findViewById(R.id.send);
 
@@ -87,6 +105,7 @@ public class ChatActivity extends AppCompatActivity {
             newMessage.put("text", sendMessageText);
 
             newMessageDb.setValue(newMessage);
+
         }
 
         mSendEditText.setText(null);
@@ -101,6 +120,7 @@ public class ChatActivity extends AppCompatActivity {
                     chatId = dataSnapshot.getValue().toString();
                     mDatabaseChat = mDatabaseChat.child(chatId);
                     getChatMessages();
+
                 }
             }
             @Override
