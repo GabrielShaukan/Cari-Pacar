@@ -1,5 +1,6 @@
 package com.shaukan.gabriel.tinderclone.Chat;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
@@ -10,9 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,10 +42,13 @@ public class ChatActivity extends AppCompatActivity {
 
     private EditText mSendEditText;
     private TextView mChatName;
+    private ImageView mMatchImage;
 
     private Button mSendButton;
 
-    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName;
+    private Context context;
+
+    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName, mDatabaseMatchImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +61,28 @@ public class ChatActivity extends AppCompatActivity {
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId");
         mDatabaseChatName = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("Name");
+        mDatabaseMatchImage = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("profileImageUrl");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
 
-        //adds match name to top of chat activity 
+        //adds match name to top of chat activity
         mDatabaseChatName.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mChatName.setText(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //adds profile picture of match to top of activity
+        mDatabaseMatchImage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Glide.with(ChatActivity.this).load(dataSnapshot.getValue().toString()).into(mMatchImage);
+
             }
 
             @Override
@@ -81,6 +102,7 @@ public class ChatActivity extends AppCompatActivity {
         mChatAdapter = new ChatAdapter (getDataSetChat(), ChatActivity.this);
         mRecyclerView.setAdapter(mChatAdapter);
 
+        mMatchImage = findViewById(R.id.matchImg);
         mChatName = findViewById(R.id.name);
         mSendEditText = findViewById(R.id.message);
         mSendButton = findViewById(R.id.send);

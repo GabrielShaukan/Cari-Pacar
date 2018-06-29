@@ -8,13 +8,41 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:textSize="30dp"
-        android:hint="Name"
         android:id="@+id/name"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/white"/>
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/background"
+        android:gravity="left|center"
+        android:hint="Name"
+        android:paddingLeft="70dp"
+        android:textColor="@color/white"
+        android:textSize="30dp" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="5dp">
+
+        <ImageView
+            android:id="@+id/matchImg"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cari_pacar_logo" />
+
+    </android.support.v7.widget.CardView>
+
+
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -22,13 +50,6 @@
         android:paddingTop="45dp"
         android:layout_above="@+id/sendLayout"
         android:id="@+id/scrollView">
-
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recyclerView"
-            android:scrollbars="vertical">
-        </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -53,5 +74,13 @@
             android:id="@+id/send"/>
 
     </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/name"
+        android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
