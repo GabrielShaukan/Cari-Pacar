@@ -48,34 +48,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ChatViewHolder holder, int position) {
         holder.mMessage.setText(chatList.get(position).getMessage());
-        //FirebaseUser userId = FirebaseAuth.getInstance().getCurrentUser();
-        //DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("Users").child(userId.getUid()).child("Name");
 
         if (chatList.get(position).getCurrentUser()) {
-
-            //adds sender name to chat item
-            /*user.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    holder.mUser.setText(dataSnapshot.getValue().toString());
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });*/
-            //holder.mUser.setGravity(Gravity.END);
             holder.mMessage.setGravity(Gravity.END);
-            holder.mMessage.setTextColor(Color.parseColor("#404040"));
-            holder.mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"));
+            holder.mMessage.setTextColor(Color.parseColor("#000000"));
+            holder.mBubble.setCardBackgroundColor(Color.parseColor("#9EBC9E"));
+            holder.mMasterContainer.setGravity(Gravity.END);
+            holder.mContainer.setGravity(Gravity.END);
         } else {
-
-            //holder.mUser.setText("You");
-            //holder.mUser.setGravity(Gravity.START);
             holder.mMessage.setGravity(Gravity.START);
-            holder.mMessage.setTextColor(Color.parseColor("#FFFFFF"));
-            holder.mContainer.setBackgroundColor(Color.parseColor("#2DB4C8"));
+            holder.mMessage.setTextColor(Color.parseColor("#000000"));
+            holder.mMasterContainer.setGravity(Gravity.START);
         }
     }
 
