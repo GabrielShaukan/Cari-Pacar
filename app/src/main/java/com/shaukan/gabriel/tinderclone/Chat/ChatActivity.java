@@ -1,6 +1,7 @@
 package com.shaukan.gabriel.tinderclone.Chat;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
@@ -119,6 +120,8 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage() {
         String sendMessageText  = mSendEditText.getText().toString();
 
+        //final MediaPlayer chatSound = MediaPlayer.create(this, R.raw.sound);
+
         if(!sendMessageText.isEmpty()) {
             DatabaseReference newMessageDb = mDatabaseChat.push();
 
@@ -127,6 +130,7 @@ public class ChatActivity extends AppCompatActivity {
             newMessage.put("text", sendMessageText);
 
             newMessageDb.setValue(newMessage);
+            //chatSound.start();
 
         }
 
@@ -157,6 +161,7 @@ public class ChatActivity extends AppCompatActivity {
         mDatabaseChat.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                final MediaPlayer chatSound = MediaPlayer.create(ChatActivity.this, R.raw.sound);
                 if (dataSnapshot.exists()) {
                     String message = null;
                     String createdByUser = null;
@@ -166,6 +171,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
                     if(dataSnapshot.child("createdByUser").getValue() != null) {
                         createdByUser = dataSnapshot.child("createdByUser").getValue().toString();
+
                     }
 
                     if(message != null && createdByUser != null) {
@@ -174,12 +180,15 @@ public class ChatActivity extends AppCompatActivity {
                             currentUserBoolean = true;
                         }
 
+                        chatSound.start();
                         ChatObject newMessage = new ChatObject(message, currentUserBoolean);
                         resultsChat.add(newMessage);
                         mChatAdapter.notifyDataSetChanged();
 
                     }
                 }
+
+
 
 
                 //Autoscroll
