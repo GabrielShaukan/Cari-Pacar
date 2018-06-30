@@ -25,6 +25,7 @@
             android:layout_marginTop="50dp"
             android:textColorHint="@color/white"
             android:layout_gravity="center"
+            android:inputType="textEmailAddress"
             android:hint="email"
             android:id="@+id/email"/>
 
@@ -39,6 +40,7 @@
             android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
             android:hint="password"
+            android:inputType="textPassword"
             android:id="@+id/password"/>
 
         <Button

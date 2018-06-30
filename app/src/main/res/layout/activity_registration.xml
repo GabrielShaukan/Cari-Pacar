@@ -35,6 +35,7 @@
         android:textColorHint="@color/white"
         android:layout_gravity="center"
         android:hint="age"
+        android:inputType="number"
         android:id="@+id/age"/>
 
     <EditText
@@ -80,6 +81,7 @@
         android:textColorHint="@color/white"
         android:layout_gravity="center"
         android:hint="email"
+        android:inputType="textEmailAddress"
         android:id="@+id/email"/>
 
     <EditText
@@ -87,8 +89,9 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="password (Lebih dari 5 huruf)"
+        android:hint="password "
         android:password="true"
+        android:inputType="textPassword"
         android:id="@+id/password"/>
 
     <EditText
@@ -98,6 +101,7 @@
         android:layout_gravity="center"
         android:hint="Confirm password"
         android:password="true"
+        android:inputType="textPassword"
         android:id="@+id/passwordConfirm"/>
 
     <Button
