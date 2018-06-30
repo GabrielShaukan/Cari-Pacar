@@ -26,6 +26,7 @@
         android:textColorHint="@color/white"
         android:layout_gravity="center"
         android:hint="name"
+        android:inputType="textCapWords"
         android:id="@+id/name"/>
 
     <EditText
@@ -42,6 +43,7 @@
         android:textColorHint="@color/white"
         android:layout_gravity="center"
         android:hint="occupation"
+        android:inputType="textCapWords"
         android:id="@+id/occupation"/>
 
 
@@ -85,8 +87,18 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="password"
+        android:hint="password (Lebih dari 5 huruf)"
+        android:password="true"
         android:id="@+id/password"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:layout_gravity="center"
+        android:hint="Confirm password"
+        android:password="true"
+        android:id="@+id/passwordConfirm"/>
 
     <Button
         android:layout_width="250dp"

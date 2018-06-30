@@ -25,7 +25,7 @@ import java.util.Map;
 public class RegistrationActivity extends AppCompatActivity {
 
     private Button mRegister;
-    private EditText mEmail, mPassword, mName, mAge, mOccupation;
+    private EditText mEmail, mPassword, mName, mAge, mOccupation, mConfirmPassword;
     private RadioGroup mRadioGroup;
 
     private FirebaseAuth mAuth;
@@ -51,6 +51,7 @@ public class RegistrationActivity extends AppCompatActivity {
         };
 
         //XML Object initialization
+        mConfirmPassword = (EditText) findViewById(R.id.passwordConfirm);
         mRegister = (Button) findViewById(R.id.register);
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
@@ -68,12 +69,17 @@ public class RegistrationActivity extends AppCompatActivity {
                 final RadioButton radioButton = (RadioButton) findViewById(selectId);
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
+                final String confirmPassword = mConfirmPassword.getText().toString();
                 final String name = mName.getText().toString();
                 final String age = mAge.getText().toString();
                 final String occupation = mOccupation.getText().toString();
 
                 if (email.equals("") || password.equals("") || name.equals("") || age.equals("") || occupation.equals("") || radioButton.getText().toString().equals("")) {
                     Toast.makeText(RegistrationActivity.this, "Please fill in empty forms", Toast.LENGTH_LONG).show();
+                } else if(!password.equals(confirmPassword)) {
+                    Toast.makeText(RegistrationActivity.this, "Passwords dont match", Toast.LENGTH_LONG).show();
+                } else if(password.length() < 7) {
+                    Toast.makeText(RegistrationActivity.this, "Password harus lebih dari 7 karakter", Toast.LENGTH_LONG).show();
                 } else {
                     if (radioButton.getText() == null) {
                         return;

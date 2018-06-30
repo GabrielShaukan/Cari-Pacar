@@ -35,6 +35,7 @@
             android:textColorHighlight="@color/white"
             android:textColorLink="@color/white"
             android:layout_gravity="center"
+            android:password="true"
             android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
             android:hint="password"

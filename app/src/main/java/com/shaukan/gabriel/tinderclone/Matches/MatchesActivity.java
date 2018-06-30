@@ -12,11 +12,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.shaukan.gabriel.tinderclone.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class MatchesActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -70,6 +72,7 @@ public class MatchesActivity extends AppCompatActivity {
     //Fetches user name, profile picture, and userId
     private void FetchMatchInformation(String key) {
         DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
+        String userId = "";
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,12 +81,22 @@ public class MatchesActivity extends AppCompatActivity {
                     String name = "";
                     String profileImageUrl = "";
 
+
+
                     if (dataSnapshot.child("Name").getValue() != null) {
                         name = dataSnapshot.child("Name").getValue().toString();
                     }
+
+                    if (dataSnapshot.child("connections").child("matches").child(currentUserID).child("ChatId").getValue() != null) {
+                        String chatId = dataSnapshot.child("connections").child("matches").child(currentUserID).child("ChatId").getValue().toString();
+                        Query latestChat = FirebaseDatabase.getInstance().getReference().child("Chat").child(chatId).orderByKey().limitToLast(1);
+                    }
+
                     if (dataSnapshot.child("profileImageUrl").getValue() != null) {
                         profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                     }
+
+
 
                     MatchesObject obj = new MatchesObject(userId, name, profileImageUrl);
                     resultsMatches.add(obj);
