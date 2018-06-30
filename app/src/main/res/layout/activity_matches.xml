@@ -5,8 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Matches.MatchesActivity"
-    android:background="@color/colorPrimaryDark">
-    
+    android:background="@color/background">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anda Belum Menemukan Match "
+        android:id="@+id/placeholder"/>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
