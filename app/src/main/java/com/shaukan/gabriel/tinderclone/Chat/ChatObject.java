@@ -4,11 +4,13 @@ package com.shaukan.gabriel.tinderclone.Chat;
 public class ChatObject {
     //chatObject instance variables
     private String message;
+    private String currentTime;
     private Boolean currentUser;
 
     //chatObject constructor
-    public ChatObject(String message, Boolean currentUser) {
+    public ChatObject(String message, String currentTime, Boolean currentUser) {
         this.message = message;
+        this.currentTime = currentTime;
         this.currentUser = currentUser;
     }
 
@@ -19,6 +21,14 @@ public class ChatObject {
     public  void setMessage(String userId) {
         this.message = message;
     }
+
+    public String getCurrentTime() {
+        return currentTime;
+    }
+    public void setCurrentTime (String currentTime) {
+        this.currentTime = currentTime;
+    }
+
 
     public Boolean getCurrentUser() {
         return currentUser;

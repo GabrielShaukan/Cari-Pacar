@@ -30,9 +30,11 @@ import com.shaukan.gabriel.tinderclone.Matches.MatchesObject;
 import com.shaukan.gabriel.tinderclone.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Calendar;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -49,6 +51,8 @@ public class ChatActivity extends AppCompatActivity {
 
     private Context context;
 
+    private Date currentTime;
+
     DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName, mDatabaseMatchImage;
 
     @Override
@@ -57,7 +61,6 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         matchId = getIntent().getExtras().getString("matchId");
-
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId");
@@ -120,14 +123,13 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage() {
         String sendMessageText  = mSendEditText.getText().toString();
 
-        //final MediaPlayer chatSound = MediaPlayer.create(this, R.raw.sound);
-
         if(!sendMessageText.isEmpty()) {
             DatabaseReference newMessageDb = mDatabaseChat.push();
 
             Map newMessage = new HashMap();
             newMessage.put("createdByUser", currentUserID);
             newMessage.put("text", sendMessageText);
+            newMessage.put("SentTime", currentTime);
 
             newMessageDb.setValue(newMessage);
             //chatSound.start();
@@ -165,12 +167,18 @@ public class ChatActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     String message = null;
                     String createdByUser = null;
+                    String currentTime = null;
 
                     if(dataSnapshot.child("text").getValue() != null) {
                         message = dataSnapshot.child("text").getValue().toString();
                     }
                     if(dataSnapshot.child("createdByUser").getValue() != null) {
                         createdByUser = dataSnapshot.child("createdByUser").getValue().toString();
+
+                    }
+
+                    if(dataSnapshot.child("SentTime").getValue() != null) {
+                        currentTime = dataSnapshot.child("SentTime").getValue().toString().substring(0,16);
 
                     }
 
@@ -181,7 +189,9 @@ public class ChatActivity extends AppCompatActivity {
                         }
 
                         chatSound.start();
-                        ChatObject newMessage = new ChatObject(message, currentUserBoolean);
+
+
+                        ChatObject newMessage = new ChatObject(message, currentTime, currentUserBoolean);
                         resultsChat.add(newMessage);
                         mChatAdapter.notifyDataSetChanged();
 

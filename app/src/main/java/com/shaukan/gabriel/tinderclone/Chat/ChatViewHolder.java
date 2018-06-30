@@ -15,6 +15,7 @@ import com.shaukan.gabriel.tinderclone.R;
 public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView mMessage;
+    public TextView mSentTime;
     public CardView mBubble;
     public LinearLayout mContainer;
     public LinearLayout mMasterContainer;
@@ -23,6 +24,7 @@ public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
         itemView.setOnClickListener(this);
 
+        mSentTime = itemView.findViewById(R.id.sentTime);
         mBubble = itemView.findViewById(R.id.bubble);
         mMessage = itemView.findViewById(R.id.message);
         mContainer = itemView.findViewById(R.id.container);

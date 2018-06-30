@@ -3,6 +3,7 @@ package com.shaukan.gabriel.tinderclone.Chat;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -21,7 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shaukan.gabriel.tinderclone.R;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Calendar;
+
 //Creating ChatAdapter class
 public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     private List<ChatObject> chatList;
@@ -47,6 +51,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ChatViewHolder holder, int position) {
+
+
+        holder.mSentTime.setText(chatList.get(position).getCurrentTime());
         holder.mMessage.setText(chatList.get(position).getMessage());
 
         if (chatList.get(position).getCurrentUser()) {
