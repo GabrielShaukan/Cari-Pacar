@@ -5,11 +5,13 @@ public class MatchesObject {
     private String userId;
     private String name;
     private String profileImageUrl;
+    private String mostRecentChat;
 
-    public MatchesObject (String userId, String name, String profileImageUrl) {
+    public MatchesObject (String userId, String name, String profileImageUrl, String mostRecentChat) {
         this.userId = userId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;
+        this.mostRecentChat = mostRecentChat;
     }
 
     public String getUserId() {
@@ -24,6 +26,13 @@ public class MatchesObject {
     }
     public  void setName(String name) {
         this.name = name;
+    }
+
+    public String getMostRecentChat() {
+        return mostRecentChat;
+    }
+    public  void setMostRecentChat(String mostRecentChat) {
+        this.mostRecentChat = mostRecentChat;
     }
 
     public String getProfileImageUrl() {

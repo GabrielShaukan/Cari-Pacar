@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="20sp"
-    android:background="@color/background">
+    android:background="@color/color1">
 
 
 
@@ -36,7 +36,7 @@
         android:layout_gravity="center">
 
         <TextView
-            android:paddingBottom="20sp"
+            android:paddingBottom="10sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Match's Name"
@@ -44,15 +44,30 @@
             android:layout_gravity="center"
             android:id="@+id/MatchName"/>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Match's ID"
-            android:layout_gravity="center"
-            android:id="@+id/Matchid"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Matchid"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:text="Match's ID"
+                android:visibility="invisible" />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="Most Recent Chat"
+                android:id="@+id/mostRecentChat"
+                android:textColor="@color/cardview_light_background"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     </LinearLayout>
 
 
 
-</LinearLayout>

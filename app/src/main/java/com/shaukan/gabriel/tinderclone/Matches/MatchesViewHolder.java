@@ -12,13 +12,14 @@ import com.shaukan.gabriel.tinderclone.R;
 
 //create MatchesViewHolder class
 public class MatchesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView mMatchId, mMatchName;
+    public TextView mMatchId, mMatchName, mMostRecentChat;
     public ImageView mMatchImage;
 
     public MatchesViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
 
+        mMostRecentChat = (TextView) itemView.findViewById(R.id.mostRecentChat);
         mMatchId = (TextView) itemView.findViewById(R.id.Matchid);
         mMatchName = (TextView) itemView.findViewById(R.id.MatchName);
         mMatchImage = (ImageView) itemView.findViewById(R.id.MatchImage);

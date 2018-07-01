@@ -83,14 +83,14 @@ public class MatchesActivity extends AppCompatActivity {
     //Fetches user name, profile picture, and userId
     private void FetchMatchInformation(String key) {
         DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
-        String userId = "";
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
-                    String userId = dataSnapshot.getKey();
+                    final String userId = dataSnapshot.getKey();
                     String name = "";
                     String profileImageUrl = "";
+                    String mostRecentChat = "";
 
 
 
@@ -101,6 +101,7 @@ public class MatchesActivity extends AppCompatActivity {
                     if (dataSnapshot.child("connections").child("matches").child(currentUserID).child("ChatId").getValue() != null) {
                         String chatId = dataSnapshot.child("connections").child("matches").child(currentUserID).child("ChatId").getValue().toString();
                         Query latestChat = FirebaseDatabase.getInstance().getReference().child("Chat").child(chatId).orderByKey().limitToLast(1);
+                        mostRecentChat = latestChat.toString();
                     }
 
                     if (dataSnapshot.child("profileImageUrl").getValue() != null) {
@@ -109,7 +110,7 @@ public class MatchesActivity extends AppCompatActivity {
 
 
 
-                    MatchesObject obj = new MatchesObject(userId, name, profileImageUrl);
+                    MatchesObject obj = new MatchesObject(userId, name, profileImageUrl, mostRecentChat);
                     resultsMatches.add(obj);
                     mMatchesAdapter.notifyDataSetChanged();
                 }

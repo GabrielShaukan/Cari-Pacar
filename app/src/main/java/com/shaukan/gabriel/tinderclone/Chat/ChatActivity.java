@@ -2,6 +2,7 @@ package com.shaukan.gabriel.tinderclone.Chat;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
@@ -51,7 +52,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private Context context;
 
-    private Date currentTime;
+    private String currentTime;
 
     DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName, mDatabaseMatchImage;
 
@@ -97,7 +98,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
         getChatId();
-
+        currentTime = Calendar.getInstance().getTime().toString();
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(false);
