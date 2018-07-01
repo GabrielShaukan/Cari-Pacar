@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10sp">
+        android:padding="5sp">
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
@@ -25,16 +25,18 @@
             android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="right"
+            android:gravity="right"
             android:padding="20sp"
             android:text="Text" />
 
-            <TextView
-                android:id="@+id/sentTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="time" />
+        <TextView
+            android:id="@+id/sentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5sp"
+            android:text="time" />
 
         </android.support.v7.widget.CardView>
 

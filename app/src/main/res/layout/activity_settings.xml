@@ -67,7 +67,7 @@
 
 
     <EditText
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
@@ -79,7 +79,7 @@
         android:id="@+id/occupation"/>
 
     <EditText
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
