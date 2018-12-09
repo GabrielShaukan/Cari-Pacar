@@ -25,7 +25,7 @@
         android:layout_marginTop="50dp"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="name"
+        android:hint="Nama"
         android:inputType="textCapWords"
         android:id="@+id/name"/>
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="age"
+        android:hint="Umur"
         android:inputType="number"
         android:id="@+id/age"/>
 
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="occupation"
+        android:hint="Pekerjaan"
         android:inputType="textCapWords"
         android:id="@+id/occupation"/>
 
@@ -60,14 +60,14 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male"
+                android:text="Pria"
                 android:textColor="@color/white"/>
 
             <RadioButton
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Female" />
+                android:text="Wanita"/>
         </RadioGroup>
 
     </LinearLayout>
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="email"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:id="@+id/email"/>
 
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="password "
+        android:hint="Password "
         android:password="true"
         android:inputType="textPassword"
         android:id="@+id/password"/>
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:layout_gravity="center"
-        android:hint="Confirm password"
+        android:hint="Konfirmasi Password"
         android:password="true"
         android:inputType="textPassword"
         android:id="@+id/passwordConfirm"/>
@@ -111,7 +111,7 @@
         android:textColor="@color/white"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Daftar"
         android:id="@+id/register"/>
 
     </LinearLayout>

@@ -85,7 +85,7 @@
             android:layout_weight="0.2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Send"
+            android:text="Kirim"
             android:id="@+id/send"/>
 
     </LinearLayout>

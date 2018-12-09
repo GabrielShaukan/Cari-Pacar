@@ -100,7 +100,7 @@
         android:textColor="@color/white"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
-        android:text="confirm"
+        android:text="Konfirmasi"
         android:id="@+id/confirm"/>
 
 

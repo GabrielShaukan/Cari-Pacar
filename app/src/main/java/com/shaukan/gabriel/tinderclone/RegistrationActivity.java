@@ -73,11 +73,14 @@ public class RegistrationActivity extends AppCompatActivity {
                 final String name = mName.getText().toString();
                 final String age = mAge.getText().toString();
                 final String occupation = mOccupation.getText().toString();
+                final String sex;
 
-                if (email.equals("") || password.equals("") || name.equals("") || age.equals("") || occupation.equals("") || radioButton.getText().toString().equals("")) {
-                    Toast.makeText(RegistrationActivity.this, "Please fill in empty forms", Toast.LENGTH_LONG).show();
+
+
+                if (email.equals("") || password.equals("") || name.equals("") || age.equals("") || occupation.equals("") || radioButton == null) {
+                    Toast.makeText(RegistrationActivity.this, "Mohon isi bagian kosong", Toast.LENGTH_LONG).show();
                 } else if(!password.equals(confirmPassword)) {
-                    Toast.makeText(RegistrationActivity.this, "Passwords dont match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Password tidak sama", Toast.LENGTH_LONG).show();
                 } else if(password.length() < 7) {
                     Toast.makeText(RegistrationActivity.this, "Password harus lebih dari 7 karakter", Toast.LENGTH_LONG).show();
                 } else {
@@ -85,18 +88,25 @@ public class RegistrationActivity extends AppCompatActivity {
                         return;
                     }
 
+
+                    if (radioButton.getText().toString() == "Pria") {
+                        sex = "Male";
+                    } else {
+                        sex = "Female";
+                    }
+
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(RegistrationActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegistrationActivity.this, "Email sudah terdaftar", Toast.LENGTH_SHORT).show();
                             } else {
                                 String userId = mAuth.getCurrentUser().getUid();
                                 DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
                                 Map userInfo = new HashMap<>();
                                 userInfo.put("Name", name);
                                 userInfo.put("Age", age);
-                                userInfo.put("sex", radioButton.getText().toString());
+                                userInfo.put("sex", sex);
                                 userInfo.put("Occupation", occupation);
                                 userInfo.put("profileImageUrl", "default");
                                 currentUserDb.updateChildren(userInfo);
