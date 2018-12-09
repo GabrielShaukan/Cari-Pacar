@@ -62,7 +62,8 @@
                 android:text="Most Recent Chat"
                 android:id="@+id/mostRecentChat"
                 android:textColor="@color/cardview_light_background"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:visibility="invisible"/>
         </LinearLayout>
 
     </LinearLayout>
