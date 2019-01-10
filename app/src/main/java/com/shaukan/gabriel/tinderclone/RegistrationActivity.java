@@ -42,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegistrationActivity.this, SettingsActivity.class);
                     startActivity(intent);
                     finish();
                     return;
@@ -66,16 +66,13 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 int selectId = mRadioGroup.getCheckedRadioButtonId();
-                final RadioButton radioButton = (RadioButton) findViewById(selectId);
+                final RadioButton radioButton = findViewById(selectId);
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
                 final String confirmPassword = mConfirmPassword.getText().toString();
                 final String name = mName.getText().toString();
                 final String age = mAge.getText().toString();
                 final String occupation = mOccupation.getText().toString();
-                final String sex;
-
-
 
                 if (email.equals("") || password.equals("") || name.equals("") || age.equals("") || occupation.equals("") || radioButton == null) {
                     Toast.makeText(RegistrationActivity.this, "Mohon isi bagian kosong", Toast.LENGTH_LONG).show();
@@ -86,13 +83,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else {
                     if (radioButton.getText() == null) {
                         return;
-                    }
-
-
-                    if (radioButton.getText().toString() == "Pria") {
-                        sex = "Male";
-                    } else {
-                        sex = "Female";
                     }
 
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
@@ -106,7 +96,11 @@ public class RegistrationActivity extends AppCompatActivity {
                                 Map userInfo = new HashMap<>();
                                 userInfo.put("Name", name);
                                 userInfo.put("Age", age);
-                                userInfo.put("sex", sex);
+                                if (radioButton.getText().toString().equals("Pria")) {
+                                    userInfo.put("sex", "Male");
+                                } else {
+                                    userInfo.put("sex", "Female");
+                                }
                                 userInfo.put("Occupation", occupation);
                                 userInfo.put("profileImageUrl", "default");
                                 currentUserDb.updateChildren(userInfo);
