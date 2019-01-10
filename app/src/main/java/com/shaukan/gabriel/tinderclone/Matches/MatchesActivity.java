@@ -42,9 +42,7 @@ public class MatchesActivity extends AppCompatActivity {
         placeholderText = (TextView) findViewById(R.id.placeholder);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        if (mRecyclerView != null) {
-            placeholderText.setVisibility(View.GONE);
-        }
+
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
         mMatchesLayoutManager = new LinearLayoutManager(MatchesActivity.this);
@@ -54,6 +52,8 @@ public class MatchesActivity extends AppCompatActivity {
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
+
+
 
         getUserMatchId();
 
@@ -70,6 +70,8 @@ public class MatchesActivity extends AppCompatActivity {
                     for(DataSnapshot match : dataSnapshot.getChildren()) {
                         FetchMatchInformation(match.getKey());
                     }
+                } else {
+                    placeholderText.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -109,10 +111,14 @@ public class MatchesActivity extends AppCompatActivity {
                     }
 
 
-
                     MatchesObject obj = new MatchesObject(userId, name, profileImageUrl, mostRecentChat);
+
+
+
                     resultsMatches.add(obj);
                     mMatchesAdapter.notifyDataSetChanged();
+
+
                 }
             }
 
