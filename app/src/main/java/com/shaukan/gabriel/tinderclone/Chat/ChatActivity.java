@@ -153,7 +153,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     chatId = dataSnapshot.getValue().toString();
-                    mDatabaseChat = mDatabaseChat.child(chatId);
+                    mDatabaseChat = mDatabaseChat.child(chatId).child("messages");
                     getChatMessages();
 
                 }
