@@ -8,15 +8,16 @@ public class Cards {
     private String profileImageUrl;
     private String occupation;
     private String age;
+    private String notificationKey;
 
     //Card Object Constructor
-    public Cards (String userId, String name, String profileImageUrl, String occupation, String age) {
+    public Cards (String userId, String name, String profileImageUrl, String occupation, String age, String notificationKey) {
         this.userId = userId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;
-
         this.occupation = occupation;
         this.age = age;
+        this.notificationKey = notificationKey;
     }
 
     //Card Object Methods
@@ -38,5 +39,7 @@ public class Cards {
 
     public String getProfileImageUrl() { return profileImageUrl; }
     public void setProfileImageUrl(String profileImageUrl) { this.profileImageUrl = profileImageUrl; }
+
+    public String getNotificationKey() { return notificationKey; }
 
 }

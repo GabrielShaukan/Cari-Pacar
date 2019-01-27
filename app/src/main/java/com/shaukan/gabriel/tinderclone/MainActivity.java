@@ -23,6 +23,10 @@ import com.onesignal.OneSignal;
 import com.shaukan.gabriel.tinderclone.Cards.Cards;
 import com.shaukan.gabriel.tinderclone.Cards.arrayAdapter;
 import com.shaukan.gabriel.tinderclone.Matches.MatchesActivity;
+import com.shaukan.gabriel.tinderclone.Utils.SendNotification;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,8 +97,10 @@ public class MainActivity extends AppCompatActivity {
             public void onRightCardExit(Object dataObject) {
                 Cards obj = (Cards) dataObject;
                 String userId = obj.getUserId();
+                String notificationKey = obj.getNotificationKey();
                 usersDb.child(userId).child("connections").child("yep").child(currentUId).setValue(true);
-                isConnectionMatch(userId);
+                isConnectionMatch(userId, notificationKey);
+
             }
 
             @Override
@@ -118,18 +124,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Checks if there is a match or not
-    private void isConnectionMatch(String userId) {
+    private void isConnectionMatch(String userId, final String notificationKey) {
         DatabaseReference currentUserConnectionsDb = usersDb.child(currentUId).child("connections").child("yep").child(userId);
         currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+
                     Toast.makeText(MainActivity.this, "New Connection", Toast.LENGTH_LONG).show();
 
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
+
                     usersDb.child(dataSnapshot.getKey()).child("connections").child("matches").child(currentUId).child("ChatId").setValue(key);
                     usersDb.child(currentUId).child("connections").child("matches").child(dataSnapshot.getKey()).child("ChatId").setValue(key);
+
+
+                    Toast.makeText(MainActivity.this, notificationKey, Toast.LENGTH_LONG).show();
+
+                    new SendNotification("You found a match", "grats bro", notificationKey);
                 }
             }
 
@@ -181,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                         }
-                        Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl, dataSnapshot.child("Occupation").getValue().toString(), dataSnapshot.child("Age").getValue().toString() );
+                        Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), profileImageUrl, dataSnapshot.child("Occupation").getValue().toString(), dataSnapshot.child("Age").getValue().toString(), dataSnapshot.child("notificationKey").getValue().toString() );
                         rowItems.add(item);
                         arrayAdapter.notifyDataSetChanged();
                     }
