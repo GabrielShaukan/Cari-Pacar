@@ -7,6 +7,7 @@
     tools:context=".Chat.ChatActivity"
     android:orientation="vertical"
     android:fitsSystemWindows="false"
+    android:background="#f84d61"
     >
 
 
@@ -73,19 +74,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/cardview_light_background">
+        android:background="#f96172">
 
         <EditText
+            android:id="@+id/message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:id="@+id/message"/>
+            android:layout_weight="0.8" />
 
         <Button
             android:layout_weight="0.2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Kirim"
+            android:background="#f44444"
             android:id="@+id/send"/>
 
     </LinearLayout>
