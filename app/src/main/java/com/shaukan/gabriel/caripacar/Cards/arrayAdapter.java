@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Cards;
+package com.shaukan.gabriel.caripacar.Cards;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.shaukan.gabriel.tinderclone.Cards.Cards;
-import com.shaukan.gabriel.tinderclone.R;
+import com.shaukan.gabriel.caripacar.Cards.Cards;
+import com.shaukan.gabriel.caripacar.R;
 
 import org.w3c.dom.Text;
 

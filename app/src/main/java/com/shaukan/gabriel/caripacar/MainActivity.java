@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone;
+package com.shaukan.gabriel.caripacar;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -20,10 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.onesignal.OneSignal;
-import com.shaukan.gabriel.tinderclone.Cards.Cards;
-import com.shaukan.gabriel.tinderclone.Cards.arrayAdapter;
-import com.shaukan.gabriel.tinderclone.Matches.MatchesActivity;
-import com.shaukan.gabriel.tinderclone.Utils.SendNotification;
+import com.shaukan.gabriel.caripacar.Cards.Cards;
+import com.shaukan.gabriel.caripacar.Cards.arrayAdapter;
+import com.shaukan.gabriel.caripacar.Matches.MatchesActivity;
+import com.shaukan.gabriel.caripacar.Utils.SendNotification;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +34,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Cards cards_data[];
-    private com.shaukan.gabriel.tinderclone.Cards.arrayAdapter arrayAdapter;
+    private com.shaukan.gabriel.caripacar.Cards.arrayAdapter arrayAdapter;
     private int i;
     private FirebaseAuth mAuth;
 

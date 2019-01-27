@@ -15,16 +15,24 @@ repositories {
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'gabriel'
+            keyPassword '5u4por5hit'
+            storeFile file('C:/Users/Gabriel/Desktop/keystore.jks')
+            storePassword '5u4por5hit'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.shaukan.gabriel.tinderclone"
+        applicationId "com.shaukan.gabriel.caripacar"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
-                onesignal_app_id: '304f7310-266c-4983-863d-0b35a76a902b',
+                onesignal_app_id               : '304f7310-266c-4983-863d-0b35a76a902b',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
@@ -33,6 +41,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.config
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.config
         }
     }
     buildToolsVersion '27.0.3'

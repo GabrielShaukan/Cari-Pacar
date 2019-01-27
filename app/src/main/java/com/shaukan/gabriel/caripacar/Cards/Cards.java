@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Cards;
+package com.shaukan.gabriel.caripacar.Cards;
 
 //Creating Card class
 public class Cards {

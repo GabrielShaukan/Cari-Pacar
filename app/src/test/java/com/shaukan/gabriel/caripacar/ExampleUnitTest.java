@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone;
+package com.shaukan.gabriel.caripacar;
 
 import org.junit.Test;
 

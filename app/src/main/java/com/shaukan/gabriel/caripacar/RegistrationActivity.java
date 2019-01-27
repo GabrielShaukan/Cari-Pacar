@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone;
+package com.shaukan.gabriel.caripacar;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;

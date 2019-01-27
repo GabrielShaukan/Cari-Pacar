@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Matches;
+package com.shaukan.gabriel.caripacar.Matches;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.shaukan.gabriel.tinderclone.R;
+import com.shaukan.gabriel.caripacar.R;
 
 import java.util.List;
 

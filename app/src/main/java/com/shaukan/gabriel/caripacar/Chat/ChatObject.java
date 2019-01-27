@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Chat;
+package com.shaukan.gabriel.caripacar.Chat;
 
 //Create chatObject class
 public class ChatObject {

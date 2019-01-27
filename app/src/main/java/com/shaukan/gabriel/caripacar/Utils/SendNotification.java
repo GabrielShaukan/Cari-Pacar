@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Utils;
+package com.shaukan.gabriel.caripacar.Utils;
 
 import com.onesignal.OneSignal;
 

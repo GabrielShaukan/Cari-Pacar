@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Chat;
+package com.shaukan.gabriel.caripacar.Chat;
 
 import android.app.Service;
 import android.content.Context;
@@ -28,12 +28,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.shaukan.gabriel.tinderclone.MainActivity;
-import com.shaukan.gabriel.tinderclone.Matches.MatchesActivity;
-import com.shaukan.gabriel.tinderclone.Matches.MatchesAdapter;
-import com.shaukan.gabriel.tinderclone.Matches.MatchesObject;
-import com.shaukan.gabriel.tinderclone.R;
-import com.shaukan.gabriel.tinderclone.Utils.SendNotification;
+import com.shaukan.gabriel.caripacar.MainActivity;
+import com.shaukan.gabriel.caripacar.Matches.MatchesActivity;
+import com.shaukan.gabriel.caripacar.Matches.MatchesAdapter;
+import com.shaukan.gabriel.caripacar.Matches.MatchesObject;
+import com.shaukan.gabriel.caripacar.R;
+import com.shaukan.gabriel.caripacar.Utils.SendNotification;
 
 import java.util.ArrayList;
 import java.util.Date;

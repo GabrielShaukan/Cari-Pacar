@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Matches;
+package com.shaukan.gabriel.caripacar.Matches;
 
 //create MatchesObject class
 public class MatchesObject {

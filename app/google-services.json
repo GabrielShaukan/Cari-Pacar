@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:337673921192:android:b16a6ed0ee3b78d2",
         "android_client_info": {
-          "package_name": "com.shaukan.gabriel.tinderclone"
+          "package_name": "com.shaukan.gabriel.caripacar"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "337673921192-l9a2nd99e926sf7cltgk4gv6kopbolhl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.shaukan.gabriel.tinderclone",
+            "package_name": "com.shaukan.gabriel.caripacar",
             "certificate_hash": "cbbb806ac73b342d66c3b0fb9e4342c58e17e7d3"
           }
         },

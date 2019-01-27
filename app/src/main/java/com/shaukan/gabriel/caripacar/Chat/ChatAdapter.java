@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Chat;
+package com.shaukan.gabriel.caripacar.Chat;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.shaukan.gabriel.tinderclone.R;
+import com.shaukan.gabriel.caripacar.R;
 
 import java.util.Date;
 import java.util.List;

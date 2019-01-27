@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Chat;
+package com.shaukan.gabriel.caripacar.Chat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.shaukan.gabriel.tinderclone.R;
+import com.shaukan.gabriel.caripacar.R;
 
 //creating ChatViewHolder class
 public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

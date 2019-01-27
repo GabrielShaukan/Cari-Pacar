@@ -1,4 +1,4 @@
-package com.shaukan.gabriel.tinderclone.Matches;
+package com.shaukan.gabriel.caripacar.Matches;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.shaukan.gabriel.tinderclone.Chat.ChatActivity;
-import com.shaukan.gabriel.tinderclone.R;
+import com.shaukan.gabriel.caripacar.Chat.ChatActivity;
+import com.shaukan.gabriel.caripacar.R;
 
 //create MatchesViewHolder class
 public class MatchesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
