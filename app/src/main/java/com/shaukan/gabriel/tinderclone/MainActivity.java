@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child("notificationKey").setValue(userId);
             }
         });
-        OneSignal.setInFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification);
+        OneSignal.setInFocusDisplaying(OneSignal.OSInFocusDisplayOption.None);
 
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         mAuth = FirebaseAuth.getInstance();
