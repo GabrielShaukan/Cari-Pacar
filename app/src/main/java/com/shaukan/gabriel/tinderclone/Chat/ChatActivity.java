@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,10 +28,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.shaukan.gabriel.tinderclone.MainActivity;
 import com.shaukan.gabriel.tinderclone.Matches.MatchesActivity;
 import com.shaukan.gabriel.tinderclone.Matches.MatchesAdapter;
 import com.shaukan.gabriel.tinderclone.Matches.MatchesObject;
 import com.shaukan.gabriel.tinderclone.R;
+import com.shaukan.gabriel.tinderclone.Utils.SendNotification;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,9 +57,9 @@ public class ChatActivity extends AppCompatActivity {
 
     private Context context;
 
-    private String currentTime;
+    private String currentTime, notificationKey, userName;
 
-    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName, mDatabaseMatchImage;
+    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName, mDatabaseMatchImage, mDatabaseNotificationKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class ChatActivity extends AppCompatActivity {
         matchId = getIntent().getExtras().getString("matchId");
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        mDatabaseNotificationKey = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("notificationKey");
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId");
         mDatabaseChatName = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("Name");
         mDatabaseMatchImage = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("profileImageUrl");
@@ -76,6 +80,20 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mChatName.setText(dataSnapshot.getValue().toString());
+                userName = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //get notification key
+        mDatabaseNotificationKey.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                notificationKey =  dataSnapshot.getValue().toString();
             }
 
             @Override
@@ -89,7 +107,6 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Glide.with(ChatActivity.this).load(dataSnapshot.getValue().toString()).into(mMatchImage);
-
             }
 
             @Override
@@ -140,10 +157,13 @@ public class ChatActivity extends AppCompatActivity {
 
         }
 
+
+        new SendNotification(mSendEditText.getText().toString(), userName, notificationKey);
         mSendEditText.setText("");
         mSendEditText.requestFocus();
         InputMethodManager imm = (InputMethodManager)getSystemService(Service.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mSendEditText, 0);;
+
     }
 
     //generates a chat id
@@ -155,7 +175,6 @@ public class ChatActivity extends AppCompatActivity {
                     chatId = dataSnapshot.getValue().toString();
                     mDatabaseChat = mDatabaseChat.child(chatId).child("messages");
                     getChatMessages();
-
                 }
             }
             @Override
@@ -197,17 +216,12 @@ public class ChatActivity extends AppCompatActivity {
                             currentUserBoolean = true;
                         }
 
-
-
                         ChatObject newMessage = new ChatObject(message, currentTime, currentUserBoolean);
                         resultsChat.add(newMessage);
                         mChatAdapter.notifyDataSetChanged();
 
                     }
                 }
-
-
-
 
                 //Autoscroll
                 final NestedScrollView scrollview = ((NestedScrollView) findViewById(R.id.scrollView));
@@ -217,7 +231,6 @@ public class ChatActivity extends AppCompatActivity {
                         scrollview.fullScroll(ScrollView.FOCUS_DOWN);
                     }
                 });
-
             }
 
             @Override
