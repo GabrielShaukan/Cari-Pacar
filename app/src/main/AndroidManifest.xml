@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/cari_pacar_logo"
+        android:icon="@mipmap/cari_pacar_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/cari_pacar_logo"
+        android:roundIcon="@mipmap/cari_pacar_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
