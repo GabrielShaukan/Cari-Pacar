@@ -59,7 +59,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private String currentTime, notificationKey, userName;
 
-    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName, mDatabaseMatchImage, mDatabaseNotificationKey;
+    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseChatName, mDatabaseMatchImage, mDatabaseNotificationKey, mDatabaseUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +74,26 @@ public class ChatActivity extends AppCompatActivity {
         mDatabaseChatName = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("Name");
         mDatabaseMatchImage = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId).child("profileImageUrl");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
+        mDatabaseUserName = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("Name");
+
+        //Gets Current user name
+        mDatabaseUserName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userName = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         //adds match name to top of chat activity
         mDatabaseChatName.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mChatName.setText(dataSnapshot.getValue().toString());
-                userName = dataSnapshot.getValue().toString();
             }
 
             @Override
