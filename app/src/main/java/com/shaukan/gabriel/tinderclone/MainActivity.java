@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
 
-                    Toast.makeText(MainActivity.this, "New Connection", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Anda dapat match baru", Toast.LENGTH_LONG).show();
 
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
@@ -139,10 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     usersDb.child(dataSnapshot.getKey()).child("connections").child("matches").child(currentUId).child("ChatId").setValue(key);
                     usersDb.child(currentUId).child("connections").child("matches").child(dataSnapshot.getKey()).child("ChatId").setValue(key);
 
-
-                    Toast.makeText(MainActivity.this, notificationKey, Toast.LENGTH_LONG).show();
-
-                    new SendNotification("You found a match", "grats bro", notificationKey);
+                    new SendNotification("Anda dapat match baru", "Ada yang mau kenalan", notificationKey);
                 }
             }
 
