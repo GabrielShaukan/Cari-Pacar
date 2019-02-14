@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.onesignal.OneSignal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,8 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -64,6 +67,8 @@ public class RegistrationActivity extends AppCompatActivity {
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
 
                 int selectId = mRadioGroup.getCheckedRadioButtonId();
                 final RadioButton radioButton = findViewById(selectId);
@@ -107,6 +112,15 @@ public class RegistrationActivity extends AppCompatActivity {
                             }
                         }
                     });
+
+                    OneSignal.setSubscription(true);
+                    OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
+                        @Override
+                        public void idsAvailable(String userId, String registrationId) {
+                            FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("notificationKey").setValue(userId);
+                        }
+                    });
+                    OneSignal.setInFocusDisplaying(OneSignal.OSInFocusDisplayOption.None);
                 }
             }
         });
