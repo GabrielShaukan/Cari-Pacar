@@ -108,6 +108,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 }
                                 userInfo.put("Occupation", occupation);
                                 userInfo.put("profileImageUrl", "default");
+                                userInfo.put("notificationKey", "default");
                                 currentUserDb.updateChildren(userInfo);
                             }
                         }
