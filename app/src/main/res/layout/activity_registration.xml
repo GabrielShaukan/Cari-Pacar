@@ -19,24 +19,16 @@
         android:layout_height="150dp"
         android:src="@drawable/cari_pacar_logo"/>
 
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textColorHint="@color/white"
-        android:layout_gravity="center"
-        android:hint="Nama"
-        android:inputType="textCapWords"
-        android:id="@+id/name"/>
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:hint="Nama"
+            android:inputType="textCapWords"
+            android:textColorHint="@color/white" />
 
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/white"
-        android:layout_gravity="center"
-        android:hint="Umur"
-        android:inputType="number"
-        android:id="@+id/age"/>
 
     <EditText
         android:layout_width="250dp"
@@ -47,9 +39,21 @@
         android:inputType="textCapWords"
         android:id="@+id/occupation"/>
 
+        <TextView
+            android:id="@+id/dateOfBirth"
+            android:layout_width="244dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="1dp"
+            android:hint="Tanggal Lahir"
+            android:inputType="number"
+            android:textColorHint="@color/white"
+            android:textSize="18dp" />
 
 
-    <LinearLayout
+
+
+        <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RadioGroup
@@ -64,10 +68,10 @@
                 android:textColor="@color/white"/>
 
             <RadioButton
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wanita"/>
+                android:text="Wanita"
+                android:textColor="@color/white" />
         </RadioGroup>
 
     </LinearLayout>
@@ -115,6 +119,8 @@
         android:id="@+id/register"/>
 
     </LinearLayout>
+
+
 
 
 </ScrollView>

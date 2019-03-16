@@ -1,14 +1,21 @@
 package com.shaukan.gabriel.caripacar;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,14 +27,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.onesignal.OneSignal;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     private Button mRegister;
-    private EditText mEmail, mPassword, mName, mAge, mOccupation, mConfirmPassword;
+    private EditText mEmail, mPassword, mName, mOccupation, mConfirmPassword;
     private RadioGroup mRadioGroup;
+    private TextView mDateofBirth;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -59,9 +69,42 @@ public class RegistrationActivity extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
         mName = (EditText) findViewById(R.id.name);
-        mAge = (EditText) findViewById(R.id.age);
+        mDateofBirth = (TextView) findViewById(R.id.dateOfBirth);
         mOccupation = (EditText) findViewById(R.id.occupation);
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
+        //Date Selection for age
+        mDateofBirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        RegistrationActivity.this,
+                        R.style.CustomDatePickerDialogTheme,
+                        mDateSetListener,
+                        year, month, day
+                );
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                dialog.show();
+
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+                String Age = "Umur: " + getAge(year, month, dayOfMonth);
+                mDateofBirth.setText(Age);
+            }
+        };
+
+
 
         //Registering User
         mRegister.setOnClickListener(new View.OnClickListener() {
@@ -76,16 +119,16 @@ public class RegistrationActivity extends AppCompatActivity {
                 final String password = mPassword.getText().toString();
                 final String confirmPassword = mConfirmPassword.getText().toString();
                 final String name = mName.getText().toString();
-                final String age = mAge.getText().toString();
+                final String dateOfBirth = mDateofBirth.getText().toString();
                 final String occupation = mOccupation.getText().toString();
 
-                if (email.equals("") || password.equals("") || name.equals("") || age.equals("") || occupation.equals("") || radioButton == null) {
+                if (email.equals("") || password.equals("") || name.equals("") || dateOfBirth.equals("") || occupation.equals("") || radioButton == null) {
                     Toast.makeText(RegistrationActivity.this, "Mohon isi bagian kosong", Toast.LENGTH_LONG).show();
                 } else if(!password.equals(confirmPassword)) {
                     Toast.makeText(RegistrationActivity.this, "Password tidak sama", Toast.LENGTH_LONG).show();
                 } else if(password.length() < 7) {
                     Toast.makeText(RegistrationActivity.this, "Password harus lebih dari 7 karakter", Toast.LENGTH_LONG).show();
-                } else if (Integer.valueOf(age) < 18) {
+                } else if (Integer.valueOf(dateOfBirth.substring(6)) < 18) {
                     Toast.makeText(RegistrationActivity.this, "Anda belum cukup umur", Toast.LENGTH_SHORT).show();
                 }
                     else {
@@ -103,7 +146,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
                                 Map userInfo = new HashMap<>();
                                 userInfo.put("Name", name);
-                                userInfo.put("Age", age);
+                                userInfo.put("Age", dateOfBirth.substring(6));
                                 if (radioButton.getText().toString().equals("Pria")) {
                                     userInfo.put("sex", "Male");
                                 } else {
@@ -149,5 +192,23 @@ public class RegistrationActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         return;
+    }
+
+    private String getAge(int year, int month, int day){
+        Calendar dob = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dob.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+        Integer ageInt = new Integer(age);
+        String ageS = ageInt.toString();
+
+        return ageS;
     }
 }
