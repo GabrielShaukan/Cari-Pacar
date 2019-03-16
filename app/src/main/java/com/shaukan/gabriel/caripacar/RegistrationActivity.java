@@ -85,7 +85,10 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Password tidak sama", Toast.LENGTH_LONG).show();
                 } else if(password.length() < 7) {
                     Toast.makeText(RegistrationActivity.this, "Password harus lebih dari 7 karakter", Toast.LENGTH_LONG).show();
-                } else {
+                } else if (Integer.valueOf(age) < 18) {
+                    Toast.makeText(RegistrationActivity.this, "Anda belum cukup umur", Toast.LENGTH_SHORT).show();
+                }
+                    else {
                     if (radioButton.getText() == null) {
                         return;
                     }
