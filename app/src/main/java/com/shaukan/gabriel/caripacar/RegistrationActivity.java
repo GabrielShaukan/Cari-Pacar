@@ -123,11 +123,15 @@ public class RegistrationActivity extends AppCompatActivity {
                 final String occupation = mOccupation.getText().toString();
 
                 if (email.equals("") || password.equals("") || name.equals("") || dateOfBirth.equals("") || occupation.equals("") || radioButton == null) {
-                    Toast.makeText(RegistrationActivity.this, "Mohon isi bagian kosong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Mohon isi bagian kosong", Toast.LENGTH_SHORT).show();
+                } else if(name.length() > 12) {
+                    Toast.makeText(RegistrationActivity.this, "Nama maximal 12 karakter", Toast.LENGTH_SHORT).show();
+                } else if(occupation.length() > 52) {
+                    Toast.makeText(RegistrationActivity.this, "Nama pekerjaan maximal 52 huruf", Toast.LENGTH_SHORT).show();
                 } else if(!password.equals(confirmPassword)) {
-                    Toast.makeText(RegistrationActivity.this, "Password tidak sama", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Password tidak sama", Toast.LENGTH_SHORT).show();
                 } else if(password.length() < 7) {
-                    Toast.makeText(RegistrationActivity.this, "Password harus lebih dari 7 karakter", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Password harus lebih dari 7 karakter", Toast.LENGTH_SHORT).show();
                 } else if (Integer.valueOf(dateOfBirth.substring(6)) < 18) {
                     Toast.makeText(RegistrationActivity.this, "Anda belum cukup umur", Toast.LENGTH_SHORT).show();
                 }
