@@ -1,9 +1,10 @@
 package com.shaukan.gabriel.caripacar.Chat;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
-import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
@@ -12,15 +13,17 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -28,15 +31,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.shaukan.gabriel.caripacar.MainActivity;
-import com.shaukan.gabriel.caripacar.Matches.MatchesActivity;
-import com.shaukan.gabriel.caripacar.Matches.MatchesAdapter;
-import com.shaukan.gabriel.caripacar.Matches.MatchesObject;
 import com.shaukan.gabriel.caripacar.R;
 import com.shaukan.gabriel.caripacar.Utils.SendNotification;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -118,8 +116,25 @@ public class ChatActivity extends AppCompatActivity {
         //adds profile picture of match to top of activity
         mDatabaseMatchImage.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                 Glide.with(ChatActivity.this).load(dataSnapshot.getValue().toString()).into(mMatchImage);
+
+                mMatchImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final ImageView imageView = new ImageView(ChatActivity.this);
+                        Glide.with(ChatActivity.this)
+                                .load(dataSnapshot.getValue().toString())
+                                .asBitmap()
+                                .into(new SimpleTarget<Bitmap>() {
+                                    @Override
+                                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                        imageView.setImageBitmap(resource);
+                                    }
+                                });
+                        showProfileImage(imageView);
+                    }
+                });
             }
 
             @Override
@@ -195,6 +210,13 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //Pops up profile image
+    private void showProfileImage(ImageView img) {
+        AlertDialog.Builder imageDialog = new AlertDialog.Builder(ChatActivity.this);
+        imageDialog.setView(img);
+        imageDialog.show();
     }
 
     //gets chat messages and user who sent said message
