@@ -183,7 +183,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        Toast.makeText(SettingsActivity.this, "Perubahan berhasil", Toast.LENGTH_LONG).show();
+
 
         if(resultUri != null) {
             StorageReference filePath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
@@ -215,6 +215,7 @@ public class SettingsActivity extends AppCompatActivity {
                            Map userInfo = new HashMap();
                            userInfo.put("profileImageUrl", downloadUrl.toString());
                            mUserDatabase.updateChildren(userInfo);
+                           Toast.makeText(SettingsActivity.this, "Perubahan berhasil", Toast.LENGTH_LONG).show();
                            finish();
                            return;
 
@@ -224,13 +225,24 @@ public class SettingsActivity extends AppCompatActivity {
             });
 
         } else {
-            finish();
-        }
+            mUserDatabase.child("profileImageUrl").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String imageUrl = dataSnapshot.getValue().toString();
+                    if (imageUrl.equals("default")) {
+                        Toast.makeText(SettingsActivity.this,"Mohon upload foto profil anda", Toast.LENGTH_SHORT).show();
+                    } else {
+                        finish();
+                    }
+                }
 
-        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-        return;
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
     }
 
     @Override
