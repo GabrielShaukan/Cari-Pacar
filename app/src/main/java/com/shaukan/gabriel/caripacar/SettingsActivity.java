@@ -48,6 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Button  mConfirm;
 
     private ImageView mProfileImage;
+    private TextView mPrivacyPolicy;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
@@ -80,6 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
         mOccupationField = (EditText) findViewById(R.id.occupation);
 
         mProfileImage = (ImageView) findViewById(R.id.profileImg);
+        mPrivacyPolicy = (TextView) findViewById(R.id.privacyPolicy);
 
         mConfirm = (Button) findViewById(R.id.confirm);
 
@@ -102,6 +104,15 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveUserInformation();
+            }
+        });
+
+        mPrivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://sites.google.com/view/cari-pacar-privacy-policy/home");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 
