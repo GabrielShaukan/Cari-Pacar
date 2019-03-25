@@ -28,8 +28,8 @@ android {
         applicationId "com.shaukan.gabriel.caripacar"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 4
-        versionName '1.0.3'
+        versionCode 5
+        versionName '1.0.4'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
                 onesignal_app_id               : '304f7310-266c-4983-863d-0b35a76a902b',
@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.lorentzos.swipecards:library:1.0.9'
-    implementation "com.google.android.gms:play-services-base:16.0.1"
+    implementation 'com.google.android.gms:play-services-base:16.0.1'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'id.zelory:compressor:2.1.0'
     implementation 'com.google.firebase:firebase-core:16.0.4'

@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
+    private ImageView mLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         mLogin = (Button) findViewById(R.id.login);
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
+        mLoading = findViewById(R.id.loginLoading);
 
         //logging in user
         mLogin.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +71,9 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
+
+                    GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(mLoading);
+                    Glide.with(LoginActivity.this).load(R.mipmap.loading_heart).into(imageViewTarget);
                 }
             }
         });
