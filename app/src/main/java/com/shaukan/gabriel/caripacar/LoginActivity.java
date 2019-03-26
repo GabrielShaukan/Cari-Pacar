@@ -66,14 +66,14 @@ public class LoginActivity extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(mLoading);
+                            Glide.with(LoginActivity.this).load(R.mipmap.loading_heart).into(imageViewTarget);
                             if (!task.isSuccessful()) {
+                                mLoading.setVisibility(View.INVISIBLE);
                                 Toast.makeText(LoginActivity.this, "sign in error", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-
-                    GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(mLoading);
-                    Glide.with(LoginActivity.this).load(R.mipmap.loading_heart).into(imageViewTarget);
                 }
             }
         });
